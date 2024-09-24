@@ -681,7 +681,7 @@ Par exemple :
   </details>
 
 
-4. Déclarez et initialisez 2 variables entières `bien_bu`, `bien_mange` à `true`.
+4. Déclarez et initialisez 2 variables entières `bien_bu`, `bien_mange` à 1.
 
   <details>
   <summary>J'ai besoin d'aide ! 😱</summary>
