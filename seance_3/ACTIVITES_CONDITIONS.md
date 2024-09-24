@@ -35,7 +35,7 @@ Si la condition est égale à `true` (🇫🇷 vrai), les instructions qu'elle c
 
 ```cpp
 if (montant_compte == 0) {
-  std::cout << "J'ai plus un radis 😭😭\n"
+  printf("J'ai plus un radis 😭😭\n");
 }
 ```
 
@@ -688,7 +688,7 @@ Par exemple :
   <p>
 
   ```cpp
-  bool bien_bu, bien_mange = true;
+  int bien_bu, bien_mange = 1;
   ```
 
   </p>
@@ -706,7 +706,7 @@ Par exemple :
   Le signe `et` en C est écrit avec `&&`.
 
   ```cpp
-  if (bien_bu == true && bien_mange == true) {
+  if (bien_bu == 1 && bien_mange == 1) {
 
     printf("J'ai la peau du ventre bien tendu\n");
 
@@ -879,7 +879,7 @@ Par exemple :
   <p>
 
   ```cpp
-  bool mot_de_passe_saisi = false;
+  int mot_de_passe_saisi = 0;
   ```
 
   </p>
