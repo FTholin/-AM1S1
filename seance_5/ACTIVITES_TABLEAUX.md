@@ -678,71 +678,75 @@ int main() {
 3. La chaîne p contient la chaîne "pool" et sa chaîne miroir "loop". Faites une boucle dans la chaîne et remplacez la première moitié par des `'#'`.
 
 
+
+
 ## Concaténation de chaînes de caractères
 
-Tout comme il existe une fonction pour les chaînes de caractères qui renvoie leur longueur (`strlen()`), la bibliothèque des chaînes de caractères contient d'autres fonctions utiles pour les chaînes de caractères. 
+Tout comme il existe une fonction pour obtenir la longueur des chaînes de caractères (`strlen()`), la bibliothèque standard propose plusieurs fonctions pratiques pour manipuler les chaînes de caractères.
 
-> Concaténer signifie **lier ou joindre ensemble plusieurs choses** (généralement des chaînes de caractères, des tableaux, etc.). Cela implique de prendre des éléments distincts et de les fusionner en un seul objet en conservant l'ordre des éléments originaux.
+> **Concaténer** signifie **lier ou joindre ensemble plusieurs éléments** (souvent des chaînes de caractères ou des tableaux). Cela implique de fusionner des éléments distincts en un seul tout en maintenant leur ordre d'origine.
 
-Dans cet exercice, nous allons explorer comment **concaténer deux chaînes de caractères** en utilisant la fonction `strcat()`.
+Dans cet exercice, nous allons apprendre à **concaténer deux chaînes de caractères** à l’aide de la fonction `strcat()`.
 
-La fonction `strcat()` prend une chaîne, `src`, et l'ajoute à la fin d'une autre chaîne, `dst`. L'utilisation de cette fonction ne crée pas une troisième chaîne distincte, mais modifie la chaîne `dst` pour inclure la chaîne `src` à la fin. La syntaxe de cette fonction est la suivante
+La fonction `strcat()` prend une chaîne source, `src`, et l’ajoute à la fin d'une chaîne destination, `dst`. Elle ne crée pas une nouvelle chaîne indépendante, mais modifie directement `dst` pour y inclure `src` à la fin. Voici la syntaxe de cette fonction :
 
 ```c
-strcat(dst, src) ;
+strcat(dst, src);
 ```
 
+Il est crucial de s’assurer que la chaîne destination (`dst`) dispose de suffisamment de mémoire pour contenir les caractères de `src` et son propre contenu, sinon cela entraînera un dépassement de mémoire (buffer overflow).
 
-À première vue, il peut sembler qu'une certaine magie a eu lieu ici, car on sait que les chaînes de caractères (parce qu'elles sont des tableaux) sont immuables !
-
-En fait, la fonction prend les deux chaînes de caractères et crée un tableau de caractères de taille `strlen(src) + strlen(dst) + 1`. Elle remplit ensuite le tableau avec les caractères des deux chaînes de caractères en commençant par `dst`. 
-
-Enfin, il supprime la mémoire occupée par la chaîne `dst` originale et associe la variable de la chaîne `dst` au nouveau tableau de caractères créé.
-
-Tout ceci est fait pour vous "sous le capot" en utilisant le concept des pointeurs, un sujet qui sera abordé dans une prochaine leçon.
-
-Voici l'exemple en action :
+Voici un exemple simple pour illustrer ce concept :
 
 ```c
 #include<stdio.h>
-#include<string.h> // N'oubliez pas d'inclure ceci !
- 
+#include<string.h>  // N'oubliez pas d'inclure cette bibliothèque !
+
 int main() {
-  char s1[] = "abcd" ;
-  char s2[] = "efgh" ;
-  strcat(s1, s2) ;
-  printf("%s", s1) ; 
-  // La sortie sera "abcdefgh".
+    // Allouer suffisamment d'espace pour contenir "abcd" + "efgh" + '\0'
+    char s1[10] = "abcd";  // Chaîne de destination avec assez d'espace
+    char s2[] = "efgh";    // Chaîne source
+    strcat(s1, s2);        // Concaténation de s2 à s1
+    printf("%s\n", s1);    // La sortie sera "abcdefgh"
+    
+    return 0;
 }
 ```
 
 ### À vous de jouer ! 🤠
 
-1. Après avoir repris un espace de travail vide, copiez-collez le code ci-dessous:
+1. Après avoir préparé un espace de travail vide, copiez-collez le code suivant :
+
 ```c
 #include<stdio.h>
 #include<string.h>
 
 int main() {
-    
-  char s1[] = "Londres" ;
-  char s2[] = "Pont" ;
+    // Déclaration des chaînes de caractères avec assez d'espace pour la concaténation
+    char s1[50] = "Londres";  // On alloue suffisamment d'espace pour la concaténation
+    char s2[] = "Pont";
 
-  char n[] = "New" ;
-  char y[] = "York" ;
-  char c[] = " City " ;
+    char n[50] = "New";  // Espace suffisant pour la concaténation
+    char y[] = "York";
+    char c[] = " City ";
 
-  // Question 1
-  
-  // Question 2
+    // Question 1 : Concatenation de s1 et s2
+
+    // Question 2 : Concatenation de n, y, et c
 
 }
 ```
 
-2. Concaténer les chaînes `s1` et `s2` et afficher le résultat, inclure un saut de ligne à la fin de la chaîne.
+2. **Question 1** : Utilisez la fonction `strcat()` pour concaténer `s1` et `s2`, puis affichez le résultat avec un saut de ligne à la fin.
+   - Résultat attendu : `LondresPont`
+
+3. **Question 2** : Utilisez `strcat()` pour concaténer `n`, `y`, et `c`, puis affichez le résultat.
+   - Résultat attendu : `NewYork City`
 
 
-3. Concaténer les chaînes de caractères `n`, `y`, `c` et afficher le résultat.
+
+
+
 
 ## Copie de chaînes de caractères
 
