@@ -350,7 +350,12 @@ Si l'on tente d'incrémenter (ou de décrémenter) un pointeur au-delà des limi
 
 **Soyez prudent !**
 
-### Exemple concret avec deux variables et arithmétique sur des pointeurs
+
+###  arithmétique sur des pointeurs avec deux variables
+
+### À vous de jouer ! 🤠
+
+1. Après avoir crée un espace de travail vide, copiez-collez le code ci-dessous:
 
 ```c
 #include<stdio.h>
@@ -360,46 +365,27 @@ int main() {
   double* ptr1 = &var1;  // Pointeur pointant vers var1
   double* ptr2 = &var2;  // Pointeur pointant vers var2
   
-  // Incrémentation du pointeur ptr1 de 5 (ce qui revient à déplacer de 5 * sizeof(double) octets)
-  ptr1 += 5; 
-  printf("Nouvelle adresse de ptr1 après incrémentation: %p\n", (void*)ptr1);
+  printf("Adresse de var1: %p, Adresse de var2: %p\n", &var1, &var2);
   
-  // Décrémentation du pointeur ptr2 de 4
-  ptr2 -= 4;
-  printf("Nouvelle adresse de ptr2 après décrémentation: %p\n", (void*)ptr2);
+  // Déplacement du pointeur ptr1 pour atteindre l'adresse de var2 (par hypothèse que var1 et var2 sont adjacents en mémoire)
+  ptr1++;  // On incrémente de 1 pour voir si l'on peut atteindre var2
+  printf("Nouvelle adresse de ptr1 après incrémentation: %p\n", ptr1);
+  printf("Valeur pointée par ptr1 après incrémentation: %f\n", *ptr1);
+
+  // Décrémentation du pointeur ptr2 pour qu'il pointe vers var1
+  ptr2--;  // On décrémente pour voir si l'on peut atteindre var1
+  printf("Nouvelle adresse de ptr2 après décrémentation: %p\n", ptr2);
+  printf("Valeur pointée par ptr2 après décrémentation: %f\n", *ptr2);
 
   return 0;
 }
 ```
 
-Dans cet exemple, nous avons défini deux variables `var1` et `var2`, toutes deux de type `double`. Ensuite, nous avons utilisé des pointeurs pour effectuer des opérations arithmétiques sur les adresses de ces variables. Nous avons incrémenté et décrémenté les adresses des pointeurs en fonction de la taille des types auxquels ils pointent. 
-
-### À vous de jouer ! 🤠
-
-1. Après avoir créé un espace de travail vide, copiez-collez le code ci-dessous:
-
-```c
-#include<stdio.h>
-
-int main() {
-  double var1 = 5.5, var2 = 8.2;
-  double* ptr1 = &var1;
-  double* ptr2 = &var2;
-
-  // Le code pour la question 1 ci-dessous
-
-  // Le code pour la question 2 ci-dessous
-}
-```
-
-2. Incrémentez le pointeur `ptr1` de 5 et affichez la nouvelle adresse.
-
-3. Décrémentez le pointeur `ptr2` de 4 et affichez la nouvelle adresse.
-
-
-
-
-
+### Explication de l'exemple :
+1. Nous avons défini deux variables, `var1` et `var2`, toutes deux de type `double`.
+2. Nous avons créé deux pointeurs `ptr1` et `ptr2`, chacun pointant vers l'une des variables (`var1` et `var2` respectivement).
+3. En utilisant l'arithmétique des pointeurs, nous avons incrémenté `ptr1` pour tenter de le déplacer à l'adresse de `var2`, et décrémenté `ptr2` pour le déplacer vers l'adresse de `var1`.
+4. Le programme affiche les adresses des pointeurs avant et après ces opérations, ainsi que la valeur pointée.
 
 
 ## Pointeurs et tableaux
