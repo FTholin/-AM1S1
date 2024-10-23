@@ -273,17 +273,22 @@ int main() {
 
 3. Changez la valeur contenue dans l'adresse mémoire pointée par ptr de `2000` à `961`.
 
+
+
+
+Voici la version modifiée du contenu en ajoutant deux variables et en introduisant des opérations arithmétiques concrètes avec des pointeurs :
+
+---
+
 ## Arithmétique des pointeurs
 
 Rappelez-vous qu'un pointeur est un **type spécial** de variable entière. Cela implique que les opérations arithmétiques de base peuvent être effectuées sur les pointeurs.
-
 
 Les seules opérations arithmétiques autorisées pour les pointeurs sont l'**addition** et la **soustraction**.
 
 Conceptuellement, ajouter à (ou soustraire de) un pointeur signifie que le **pointeur pointera vers une nouvelle adresse**.
 
-
-La **multiplication** n'est **pas autorisée** car l'**adresse d'un octet de mémoire est généralement un grand nombre** ; par conséquent, la multiplication d'une adresse **peut donner un nombre encore plus grand**, représentant éventuellement une **adresse en dehors des limites de l'espace mémoire disponible**. 
+La **multiplication** n'est **pas autorisée** car l'**adresse d'un octet de mémoire est généralement un grand nombre** ; par conséquent, la multiplication d'une adresse **peut donner un nombre encore plus grand**, représentant éventuellement une **adresse en dehors des limites de l'espace mémoire disponible**.
 
 La **division n'est pas autorisée** car elle permet potentiellement à un pointeur de pointer de manière illogique vers une adresse avec un indice non entier.
 
@@ -293,23 +298,38 @@ La syntaxe est l'addition traditionnelle illustrée par l'exemple suivant (ici, 
 
  ```c
 pointeur = pointeur + n;
-pointeur += n; // Même chose mais sytaxe differente
+pointeur += n; // Même chose mais syntaxe différente
  ```
 
-La chose importante à noter ici est que l'**ajout de `n`** à un pointeur **n'incrémente pas l'adresse pour pointer vers une valeur** située à n octets. Il **déplace le pointeur de n * (taille du type de données en octets)**.
+La chose importante à noter ici est que l'**ajout de `n`** à un pointeur **n'incrémente pas l'adresse pour pointer vers une valeur** située à `n` octets. Il **déplace le pointeur de `n * (taille du type de données en octets)`**.
 
 Par exemple, si un pointeur vers un int, dont la taille est de quatre octets, contient initialement l'**adresse 100** (nous utiliserons une adresse décimale pour simplifier), et que l'on ajoute trois au pointeur, celui-ci pointera désormais vers l'adresse **112**.
 
 Voyons comment cela fonctionne :
 
+
 ```c
-int main() {  
-  int* ptr ; 
-  ptr += 3 ; // Incrémente le pointeur de trois blocs. 
+#include <stdio.h>
+
+int main() {
+    int arr[] = {10, 20, 30, 40, 50};  // Déclaration d'un tableau d'entiers
+    int* ptr = arr;  // Le pointeur pointe vers le premier élément du tableau (arr[0])
+
+    printf("Adresse initiale du pointeur: %p, valeur à cette adresse: %d\n", (void*)ptr, *ptr);
+
+    ptr += 3;  // Incrémente le pointeur de 3 blocs (chaque bloc étant de la taille d'un int)
+
+    printf("Nouvelle adresse du pointeur: %p, valeur à cette adresse: %d\n", (void*)ptr, *ptr);
+
+    return 0;
 }
 ```
 
-Ce code incrémente le pointeur `ptr` pour stocker l'adresse qui se trouve à trois tailles d'`int`.
+- `arr[] = {10, 20, 30, 40, 50}` : On déclare un tableau d'entiers avec cinq éléments.
+- `int* ptr = arr` : Le pointeur `ptr` est initialisé pour pointer vers le premier élément du tableau (`arr[0]`).
+- `ptr += 3` : Le pointeur est incrémenté de trois blocs, chaque bloc étant de la taille d'un entier. Cela signifie que le pointeur sera déplacé de trois éléments dans le tableau, et il pointera vers `arr[3]`, qui contient la valeur 40.
+- Les deux `printf` permettent d'afficher l'adresse et la valeur à laquelle le pointeur pointe avant et après l'incrémentation.
+
 
 L'incrémentation par 1 peut être réalisée de la manière suivante :
 
@@ -330,16 +350,41 @@ Si l'on tente d'incrémenter (ou de décrémenter) un pointeur au-delà des limi
 
 **Soyez prudent !**
 
-
-### À vous de jouer ! 🤠
-
-1. Après avoir crée un espace de travail vide, copiez-collez le code ci-dessous:
+### Exemple concret avec deux variables et arithmétique sur des pointeurs
 
 ```c
 #include<stdio.h>
 
 int main() {
-  double* ptr1 ;
+  double var1 = 5.5, var2 = 8.2;  // Deux variables de type double
+  double* ptr1 = &var1;  // Pointeur pointant vers var1
+  double* ptr2 = &var2;  // Pointeur pointant vers var2
+  
+  // Incrémentation du pointeur ptr1 de 5 (ce qui revient à déplacer de 5 * sizeof(double) octets)
+  ptr1 += 5; 
+  printf("Nouvelle adresse de ptr1 après incrémentation: %p\n", (void*)ptr1);
+  
+  // Décrémentation du pointeur ptr2 de 4
+  ptr2 -= 4;
+  printf("Nouvelle adresse de ptr2 après décrémentation: %p\n", (void*)ptr2);
+
+  return 0;
+}
+```
+
+Dans cet exemple, nous avons défini deux variables `var1` et `var2`, toutes deux de type `double`. Ensuite, nous avons utilisé des pointeurs pour effectuer des opérations arithmétiques sur les adresses de ces variables. Nous avons incrémenté et décrémenté les adresses des pointeurs en fonction de la taille des types auxquels ils pointent. 
+
+### À vous de jouer ! 🤠
+
+1. Après avoir créé un espace de travail vide, copiez-collez le code ci-dessous:
+
+```c
+#include<stdio.h>
+
+int main() {
+  double var1 = 5.5, var2 = 8.2;
+  double* ptr1 = &var1;
+  double* ptr2 = &var2;
 
   // Le code pour la question 1 ci-dessous
 
@@ -347,11 +392,14 @@ int main() {
 }
 ```
 
+2. Incrémentez le pointeur `ptr1` de 5 et affichez la nouvelle adresse.
 
-2. Incrémenter le pointeur sur double `ptr1` de 5.
+3. Décrémentez le pointeur `ptr2` de 4 et affichez la nouvelle adresse.
 
 
-3. Décrémentez le pointeur `ptr1` de 4.
+
+
+
 
 
 ## Pointeurs et tableaux
