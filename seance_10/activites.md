@@ -117,13 +117,11 @@
 1. Initialisez la boucle qui continue tant que le solde du prêt (montantPret) est supérieur à zéro.
 2. À chaque itération :
    - Ajoutez les intérêts mensuels au solde du prêt :
-    $
-     \text{montantPret} = \text{montantPret} + (\text{montantPret} \times \text{taux d’intérêt mensuel})
-     $
+   montantPret= montantPret + montantPret * taux d’intérêt mensuel}
+   
    - Soustrayez le paiement mensuel :
-     $
-     \text{montantPret} = \text{montantPret} - \text{montant du paiement mensuel}
-    $
+    montantPret = montantPret - montant du paiement mensuel
+   
    - Incrémentez le compteur de mois.
 
 
@@ -160,13 +158,11 @@
 2. Utilisez une boucle `for` qui s'exécute pour chaque jour de la période (de 1 à `nombreDeJours` inclus).
 3. À chaque itération :
    - **Calculez la variation quotidienne** :
-     $
-     \text{variation} = \text{valeur actuelle} \times \frac{\text{variation quotidienne}}{100}
-     $
+     variation = valeur actuelle * (variation quotidienne / 100)
+   
    - **Mettez à jour la valeur de l'investissement** :
-     $
-     \text{valeur actuelle} = \text{valeur actuelle} + \text{variation}
-     $
+     valeur actuelle = valeur actuelle + variation
+     
    - **Affichez la valeur du jour courant** :
      Montrez le numéro du jour et la valeur actualisée de l'investissement (par exemple : "Jour 1 : 1050.00 €").
 
