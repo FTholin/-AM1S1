@@ -389,3 +389,164 @@ Jours avec moins de sommeil que la moyenne :
 - Jour 5 : 6.00 heures
 ```
 
+
+## Gestion d’un planning de réservation
+
+
+### **Scénario :**
+Un hôtel dispose de **3 chambres**, et les réservations sont enregistrées pour **7 jours**. Le programme doit :
+1. Initialiser un tableau représentant le planning des réservations : chaque jour (ligne) et chaque chambre (colonne).
+2. Permettre à l’utilisateur de modifier l’état d’une chambre pour un jour donné :
+   - `0` pour **libre**.
+   - `1` pour **occupée**.
+3. Afficher le planning complet après chaque modification.
+
+---
+
+### **Étapes :**
+
+---
+
+#### **Étape 1 : Déclarer les variables nécessaires**
+1. **Planning des réservations :**
+   - Un tableau 2D `planning[7][3]` est utilisé :
+     - **7 lignes** : Une pour chaque jour.
+     - **3 colonnes** : Une pour chaque chambre.
+
+   Au début, toutes les chambres sont libres (valeurs initiales de `0`).
+
+2. **Variables complémentaires :**
+   - `jour` : Indique le jour à modifier (de 1 à 7).
+   - `chambre` : Indique la chambre à modifier (de 1 à 3).
+   - `statut` : Représente la réservation :
+     - `0` pour libre.
+     - `1` pour occupée.
+
+---
+
+#### **Étape 2 : Initialiser le tableau des réservations**
+1. Toutes les valeurs du tableau sont initialisées à `0` pour indiquer que toutes les chambres sont libres au départ.
+
+---
+
+#### **Étape 3 : Afficher le planning initial**
+1. Parcourir le tableau avec deux boucles imbriquées :
+   - Une **boucle externe** pour les lignes (jours).
+   - Une **boucle interne** pour les colonnes (chambres).
+2. Afficher chaque ligne de manière formatée :
+   - Exemple :
+     ```
+     Jour 1 : 0 0 0
+     Jour 2 : 0 0 0
+     ```
+
+---
+
+#### **Étape 4 : Modifier une réservation**
+1. L’utilisateur peut modifier une réservation :
+   - Saisir le jour, la chambre et le statut (`0` ou `1`).
+2. Les saisies sont converties pour correspondre aux indices du tableau :
+   - Jour : `jour - 1` (convertir de 1-indexé à 0-indexé).
+   - Chambre : `chambre - 1`.
+
+---
+
+#### **Étape 5 : Valider les entrées**
+1. Vérifier les conditions suivantes :
+   - **Jour** doit être compris entre 1 et 7.
+   - **Chambre** doit être compris entre 1 et 3.
+   - **Statut** doit être soit `0` soit `1`.
+
+2. Si une entrée est invalide :
+   - Afficher un message d’erreur.
+   - Redemander les informations.
+
+---
+
+#### **Étape 6 : Mettre à jour le planning**
+1. Si les entrées sont valides, mettre à jour l’élément correspondant dans le tableau :
+  $planning[jour - 1][chambre - 1] = statut$
+
+---
+
+#### **Étape 7 : Répéter les modifications**
+1. Permettre à l’utilisateur de modifier plusieurs réservations :
+   - La boucle continue tant que l’utilisateur n’entre pas une valeur négative pour le jour.
+   - Exemple :
+     - Entrer `-1` pour arrêter la boucle.
+
+---
+
+#### **Étape 8 : Afficher le planning mis à jour**
+1. Après chaque modification, afficher à nouveau le planning complet :
+   - Parcourir et afficher le tableau comme à l’étape 3.
+
+
+---
+
+### **Exemple d'exécution**
+
+#### **Étape 1 : Afficher le planning initial**
+```
+Planning initial (0 = libre, 1 = occupée) :
+Jour 1 : 0 0 0
+Jour 2 : 0 0 0
+Jour 3 : 0 0 0
+Jour 4 : 0 0 0
+Jour 5 : 0 0 0
+Jour 6 : 0 0 0
+Jour 7 : 0 0 0
+```
+
+#### **Étape 2 : Modifier les réservations**
+**Entrée utilisateur :**
+```
+Entrez le jour (1-7) et la chambre (1-3) à modifier : 2 1
+Entrez le statut (0 = libre, 1 = occupée) : 1
+```
+
+**Sortie :**
+```
+Planning mis à jour :
+Jour 1 : 0 0 0
+Jour 2 : 1 0 0
+Jour 3 : 0 0 0
+Jour 4 : 0 0 0
+Jour 5 : 0 0 0
+Jour 6 : 0 0 0
+Jour 7 : 0 0 0
+```
+
+---
+
+#### **Étape 3 : Terminer le programme**
+**Entrée utilisateur :**
+```
+Entrez le jour (1-7) et la chambre (1-3) à modifier : -1
+Merci d'avoir utilisé le système de réservation.
+```
+
+---
+
+### **Explication des boucles utilisées :**
+
+1. **Boucle `for` pour afficher le planning :**
+   - Parcourt chaque ligne (jour) et chaque colonne (chambre) pour afficher le tableau.
+
+2. **Boucle `while` pour modifier les réservations :**
+   - Continue tant que l’utilisateur n’entre pas une valeur négative pour le jour.
+
+---
+
+### **Améliorations possibles**
+
+1. **Ajouter des noms aux chambres :**
+   - Exemple : Chambre "Suite", "Double", "Simple".
+
+2. **Gérer plusieurs semaines :**
+   - Étendre le tableau pour gérer un planning mensuel ou annuel.
+
+3. **Statistiques :**
+   - Calculer le taux d’occupation pour chaque jour ou chaque chambre.
+
+Ce programme fournit une base robuste pour gérer les réservations dans un hôtel ou un système similaire.
