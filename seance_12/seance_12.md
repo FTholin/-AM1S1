@@ -46,7 +46,7 @@ Votre facture d'électricité est de : 25.00 €
 #### Cas 3 : Consommation de 600 kWh
 ```
 Veuillez entrer votre consommation électrique en kWh : 600
-Votre facture d'électricité est de : 130.00 €
+Votre facture d'électricité est de : 120.00 €
 ```
 
 #### Cas 4 : Consommation négative
