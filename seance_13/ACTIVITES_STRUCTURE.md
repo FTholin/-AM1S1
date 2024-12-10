@@ -70,13 +70,13 @@ Il est temps de définir votre propre structure.
 Maintenant que nous savons comment définir des structures, voyons comment les utiliser dans notre code.
     
 ```c
-struct Bouteille {
+typedef struct  {
   char* marque;
   int capacite_max;
   int capacite_courante;
-};
+}Bouteille;
  
-struct Bouteille bouteille_1 = {"Evian", 1, 0};
+Bouteille bouteille_1 = {"Evian", 1, 0};
 ```
 
 L'exemple ci-dessus définit la structure `Bouteille` de l'exercice précédent. La dernière ligne du code initialise ensuite une structure en utilisant une notation ordonnée :
@@ -164,15 +164,15 @@ Dans un petit nombre de situations, nous pourrions éventuellement utiliser des 
 
 ```c
 
-struct Bouteille {
+typedef struct  {
   char* marque;
   int capacite_max;
   int capacite_courante;
-};
+}Bouteille;
  
-struct Bouteille bouteille_1 = {"Evian", 1, 0};
+Bouteille bouteille_1 = {"Evian", 1, 0};
  
-struct Bouteille bouteille_2 = {"Saint Alban", 1.5, 0.5};
+Bouteille bouteille_2 = {"Saint Alban", 1.5, 0.5};
 ```
 
 
@@ -225,13 +225,13 @@ Maintenant que nous avons exploité la puissance des structures pour regrouper l
 La notation par points est un opérateur C qui permet d'accéder à une variable membre d'une structure et de la modifier.
 
 ```c
-struct Bouteille {
+typedef struct  {
   char* marque;
   int capacite_max;
   int capacite_courante;
-};
+}Bouteille;
 
-struct Bouteille maBouteille = {"Evian", 1, 0};
+Bouteille maBouteille = {"Evian", 1, 0};
  
 // Remplir ma bouteille
 maBouteille.capacite_courante = 0.8;
@@ -261,14 +261,14 @@ L'opérateur point est essentiel pour améliorer les avantages d'emballage des s
 ```c
 #include <stdio.h>
 
-struct Personne {
+typdef struct  {
   char nom[40];
   int age;
-};
+}Personne;
 
 int main(void) {
-  struct Personne personne1 = {"Martin"};
-  struct Personne personne2 = {"Michelle"};
+  Personne personne1 = {"Martin"};
+  Personne personne2 = {"Michelle"};
   
   // Ecrire code en dessous
 
