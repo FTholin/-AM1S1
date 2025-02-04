@@ -474,39 +474,19 @@ Créer des fonctions pour modifier les indicateurs du Tamagotchi en fonction des
    - Réduire la faim.
    - Augmenter légèrement l’énergie.
    - Exemple :
-     ```c
-     void nourrir(Tamagotchi *pet) {
-         pet->faim -= 10;
-         if (pet->faim < 0) pet->faim = 0; // Éviter les valeurs négatives
-         pet->energie += 5;
-         printf("Vous avez nourri votre Tamagotchi.\n");
-     }
-     ```
+
 
 2. **Fonction `jouer` :**
    - Augmenter le bonheur.
    - Réduire légèrement l’énergie et augmenter la faim.
    - Exemple :
-     ```c
-     void jouer(Tamagotchi *pet) {
-         pet->bonheur += 10;
-         pet->energie -= 5;
-         pet->faim += 5;
-         printf("Vous avez joué avec votre Tamagotchi.\n");
-     }
-     ```
+
 
 3. **Fonction `soigner` :**
    - Augmenter la santé.
    - Réduire légèrement l’énergie.
    - Exemple :
-     ```c
-     void soigner(Tamagotchi *pet) {
-         pet->sante += 10;
-         pet->energie -= 2;
-         printf("Vous avez soigné votre Tamagotchi.\n");
-     }
-     ```
+ 
 
 ---
 
@@ -539,17 +519,7 @@ Terminer le programme si l’état du Tamagotchi devient critique (par exemple, 
 1. Vérifiez après chaque action si :
    - `faim > 100` : Affichez un message et terminez le programme.
    - `sante <= 0` : Affichez un message et terminez le programme.
-   - Exemple :
-     ```c
-     if (pet->faim > 100) {
-         printf("Votre Tamagotchi a trop faim... il est parti...\n");
-         break;
-     }
-     if (pet->sante <= 0) {
-         printf("Votre Tamagotchi est gravement malade... Fin du jeu.\n");
-         break;
-     }
-     ```
+
 
 2. Si l’utilisateur choisit "Quitter", affichez un message de départ et terminez.
 
